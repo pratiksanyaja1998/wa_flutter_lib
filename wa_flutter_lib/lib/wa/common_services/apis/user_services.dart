@@ -11,13 +11,13 @@ class UserServices{
 
   static String get getBaseUrl => _baseUrl;
 
-  static final kAuthenticatedPostRequestHeader = {
+  static dynamic kAuthenticatedPostRequestHeader = {
     "Accept": "application/json",
     "Content-Type": "application/json",
     "Authorization": "Token ${SharedPreference.getUser()!.token}"
   };
 
-  static final kAuthenticatedGetRequestHeader = {
+  static dynamic kAuthenticatedGetRequestHeader = {
     "Accept": "application/json",
     "Authorization": "Token ${SharedPreference.getUser()!.token}"
   };
@@ -176,6 +176,16 @@ class UserServices{
       printMessage("USEr LOGIN RESPONSE = ${response.body}");
       UserModel userModel = UserModel.fromJson(jsonDecode(response.body));
       SharedPreference.setUser(userModel: userModel);
+      kAuthenticatedPostRequestHeader = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Token ${SharedPreference.getUser()!.token}"
+      };
+
+      kAuthenticatedGetRequestHeader = {
+        "Accept": "application/json",
+        "Authorization": "Token ${SharedPreference.getUser()!.token}"
+      };
       return response;
     }else{
       printMessage("USER LOGIN RESPONSE = ${response.statusCode}");
@@ -198,6 +208,15 @@ class UserServices{
       printMessage("GET USER PROFILE RESPONSE = ${response.body}");
       UserModel userModel = UserModel.fromJson(jsonDecode(response.body));
       SharedPreference.setUser(userModel: userModel);
+      kAuthenticatedPostRequestHeader = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Token ${SharedPreference.getUser()!.token}"
+      };
+      kAuthenticatedGetRequestHeader = {
+        "Accept": "application/json",
+        "Authorization": "Token ${SharedPreference.getUser()!.token}"
+      };
       return response;
     }else{
       printMessage("GET USER PROFILE RESPONSE = ${response.statusCode}");
@@ -321,6 +340,15 @@ class UserServices{
       printMessage("USER LOG OUT RESPONSE = ${response.body}");
       SharedPreference.setIsLogin(false);
       SharedPreference.setUser();
+      kAuthenticatedPostRequestHeader = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Token ${SharedPreference.getUser()!.token}"
+      };
+      kAuthenticatedGetRequestHeader = {
+        "Accept": "application/json",
+        "Authorization": "Token ${SharedPreference.getUser()!.token}"
+      };
       return response;
     }else{
       printMessage("USER LOG OUT RESPONSE = ${response.statusCode}");

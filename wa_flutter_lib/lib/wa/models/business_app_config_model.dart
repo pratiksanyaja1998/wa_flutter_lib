@@ -7,6 +7,7 @@ String businessAppConfigModelToJson(BusinessAppConfigModel data) => json.encode(
 
 class BusinessAppConfigModel {
   BusinessAppConfigModel({
+    required this.businessConfig,
     required this.businessId,
     required this.type,
     required this.slug,
@@ -14,6 +15,8 @@ class BusinessAppConfigModel {
     required this.businessName,
     required this.businessLocation,
     required this.businessDescription,
+    required this.currencySymbol,
+    required this.currencyCode,
     required this.logo,
     required this.version,
     required this.authenticationType,
@@ -42,6 +45,7 @@ class BusinessAppConfigModel {
     required this.paymentType,
   });
 
+  Map<String, dynamic> businessConfig;
   int businessId;
   String type;
   String slug;
@@ -49,6 +53,8 @@ class BusinessAppConfigModel {
   String businessName;
   BusinessLocation businessLocation;
   String businessDescription;
+  String currencySymbol;
+  String currencyCode;
   String logo;
   String version;
   String authenticationType;
@@ -76,7 +82,9 @@ class BusinessAppConfigModel {
   String paymentKey;
   String paymentType;
 
+
   factory BusinessAppConfigModel.fromJson(Map<String, dynamic> json) => BusinessAppConfigModel(
+    businessConfig: json,
     businessId: json["businessId"] ?? 0,
     type: json["type"] ?? "",
     slug: json["slug"] ?? "",
@@ -84,6 +92,8 @@ class BusinessAppConfigModel {
     businessName: json["businessName"] ?? "",
     businessLocation: BusinessLocation.fromJson(json["businessLocation"] ?? {}),
     businessDescription: json["businessDescription"] ?? "",
+    currencySymbol: json["currencySymbol"] ?? "₹",
+    currencyCode: json["currencyCode"] ?? "INR",
     logo: json["logo"] ?? "",
     version: json["version"] ?? "",
     authenticationType: json["authentication_type"] ?? "",
@@ -120,6 +130,8 @@ class BusinessAppConfigModel {
     "businessName": businessName,
     "businessLocation": businessLocation.toJson(),
     "businessDescription": businessDescription,
+    "currencySymbol": currencySymbol,
+    "currencyCode": currencyCode,
     "logo": logo,
     "version": version,
     "authentication_type": authenticationType,

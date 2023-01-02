@@ -140,6 +140,10 @@ class CommonFunctions{
   void showError({required var data, required BuildContext context}){
     if(data.containsKey("detail")){
       printMessage("---- ${data["detail"]}");
+      if(data["detail"] == "Invalid token."){
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), (route) => false);
+        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+      }
       showAlertDialog(
         alertMessage: data["detail"], context: context,
       );
